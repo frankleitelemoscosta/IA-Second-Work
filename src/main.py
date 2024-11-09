@@ -37,7 +37,7 @@ fim = (0, 4)     # objetivo final
 # daqui em diante temos a implementação dos algoritmos
 
 def distanceCalculation(node, fim):
-    return abs(node[0] - fim[0]) + abs(node[1] - fim[1])
+    return float(float(abs(node[0] - fim[0])) + float(abs(node[1] - fim[1])))
 
 
 def a_star(grafo, inicio, fim):
@@ -50,7 +50,7 @@ def a_star(grafo, inicio, fim):
 
     # enquanto houverem nós abertos
     while abertos:
-        # seleciona o nó com menor valor de f
+        # seleciona o nó com menor valor de f → então este vetor abertos é reordenado
         atual = abertos[0]
         for node in abertos:
             if f[node] < f[atual]:
@@ -62,6 +62,8 @@ def a_star(grafo, inicio, fim):
             while atual:
                 caminho.insert(0, atual)
                 atual = antecessores.get(atual)
+                # print("caminho: ", caminho)
+                # print("atual: ", atual)
             return caminho
 
         # remove o nó atual da lista de abertos e o coloca na lista de fechados
@@ -75,7 +77,7 @@ def a_star(grafo, inicio, fim):
                 continue
 
             # calcula o custo para chegar no vizinho
-            custo = g[atual] + 1
+            custo = float(g[atual]) + 1
 
             # se o vizinho não está na lista de abertos, então o adiciona
             if vizinho not in abertos:
@@ -88,6 +90,8 @@ def a_star(grafo, inicio, fim):
             antecessores[vizinho] = atual
             g[vizinho] = custo
             f[vizinho] = g[vizinho] + distanceCalculation(vizinho, fim)
+            
+            print("vizinho: ",vizinho, "atual: ", atual, "valor do vetor g:", g[vizinho],"valor do vetor f:", f[vizinho])
 
     # se não encontrou o caminho, então retorna uma lista vazia
     return []
