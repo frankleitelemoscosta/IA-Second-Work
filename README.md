@@ -3,7 +3,7 @@
 Implementar e comparar dois diferentes algoritmos de busca informada (A* e Busca Gulosa) aplicados a um problema classico de busca - o problema do labirinto (Imagem 1). Pode-se utilizar algoritmos ´
 discutidos em sala de aula ou outros algoritmos conhecidos. A atividade pode ser realizada individualmente ou em dupla.
 
-![Imagem 1](<Captura de tela de 2024-11-08 12-36-18.png>)
+![Imagem 1](<img/Captura de tela de 2024-11-08 12-36-18.png>)
 
 ## Descrição dos algoritmos implementados
 O algoritmo A* (A Estrela) é uma técnica de busca de caminho mais curto em grafos ou redes.Quanto a seu funcionamento ele vai se prover de um nó inicial, um nó final, alem de usar dos vizinho de um nó(conexões) 
