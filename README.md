@@ -1,11 +1,12 @@
-# Busca Gulosa e A-estrela
-## Objetivo
-Implementar e comparar dois diferentes algoritmos de busca informada (A* e Busca Gulosa) aplicados a um problema classico de busca - o problema do labirinto (Imagem 1). Pode-se utilizar algoritmos ´
-discutidos em sala de aula ou outros algoritmos conhecidos. A atividade pode ser realizada individualmente ou em dupla.
+# Trabalho IA: Comparação entre Algoritmos de Busca Informada
+
+## Objetivo 🎯
+
+Implementar e comparar dois diferentes algoritmos de busca informada: A* (A-estrela) e Busca Gulosa. O objetivo é aplicá-los ao problema clássico do labirinto para analisar eficiência, consumo de recursos e eficácia na busca de soluções.
 
 ![Imagem 1](<img/Captura de tela de 2024-11-08 12-36-18.png>)
 
-## Descrição dos algoritmos implementados
+## Descrição dos algoritmos implementados 📜
 O algoritmo A* (A Estrela) é uma técnica de busca de caminho mais curto em grafos ou redes.Quanto a seu funcionamento ele vai se prover de um nó inicial, um nó final, alem de usar dos vizinho de um nó(conexões) 
 o custo local e o global. Alem disso existem duas listas as quais uma vai armazenar os nós que não foram anali
 sados os seguintes quesitos:
@@ -30,8 +31,18 @@ da Figura 1, os quais são:
 Este algoritmo é projetado para encontrar o caminho mais curto entre dois pontos, mas isso não significa que ele 
 encontra a melhor solução para o problema.
 
-## Resultados das medicões de desempenho 
-## Análise comparativa dos algoritmos 
+## Estrutura do Projeto 🏗️
+- **Linguagem:** Python.
+- **Bibliotecas utilizadas:**
+  - collections.deque: para implementar a fila de pesquisa no BFS.
+  - numpy: para manipulação e conversão de arrays.
+  - time: para medir o tempo de execução.
+  - tracemalloc : para medir o consumo de memória.
+
+## Resultados das medicões de desempenho ⏱️
+![image](https://github.com/user-attachments/assets/a94b8bb2-b3f0-4320-8fc0-146a976f3bce)
+
+## Análise comparativa dos algoritmos 🔍
 
 As principais diferenças entre os algoritmos Guloso e A* são:
 
@@ -55,8 +66,11 @@ Principais diferenças
 2. Heurística: Guloso usa apenas heurística local, enquanto A* usa heurística global (considera o objetivo).
 3. Ótimo: A* busca o ótimo global, enquanto Guloso busca uma solução razoável.
 
-## Conclusão sobre os resultados obtidos e sugestão de possíveis melhorias para cada algoritmo
+## Considerações Finais 📝
+- A* é o algoritmo ideal para encontrar o menor caminho em grafos, especialmente quando a precisão é essencial.
+- Busca Gulosa pode ser mais rápida, mas é menos confiável em termos de encontrar a solução mais curta.
+- Os resultados variam dependendo do tamanho e da complexidade do grafo.
 ## Autores
 
-Frank Leite Lemos Costa, aluno do 6° período do curso de engenharia da computação.
-Mateus Henrique Pereira, aluno do 8° período do curso de engenharia da computação.
+- Frank Leite Lemos Costa – Aluno do 6º período de Engenharia da Computação.
+- Mateus Henrique Pereira – Aluno do 8º período de Engenharia da Computação.

@@ -1,3 +1,18 @@
+from collections import deque
+import numpy as np
+import time
+import tracemalloc 
+
+# variaveis do algoritmo
+duracao = ["0","0", "0", "0", "0"] # apenas inicializando a lista de duração
+averageTimeAEstrela = 0
+averageTimeGuloso = 0
+memoryUsageAEstrela = 0
+memoryUsageGuloso = 0
+sampleArray = np.array(duracao) 
+convertedArray = sampleArray.astype(float) 
+
+
 # Representação do labirinto como um grafo
 grafo_labirinto = {
     (4, 0): [(4, 1), (3, 0)],          # U 
@@ -34,8 +49,19 @@ grafo_labirinto = {
 inicio = (4, 0)  # posição inicial no labirinto
 fim = (0, 4)     # objetivo final
 
-# daqui em diante temos a implementação dos algoritmos
 
+
+def medir_consumo_memoria(func, *args, **kwargs):
+    tracemalloc.start()
+    start_time = time.time()
+    resultado = func(*args, **kwargs)
+    end_time = time.time()
+    mem_atual, mem_pico = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    return resultado, (end_time - start_time), mem_pico / 1024  #Memória em KB
+
+# daqui em diante temos a implementação dos algoritmos
+#-------------------------------- Algoritmo A*--------------------------------------------------------------------------------------------------------------------------------------------------------
 def distanceCalculation(node, fim):
     return float(float(abs(node[0] - fim[0])) + float(abs(node[1] - fim[1])))
 
@@ -91,10 +117,65 @@ def a_star(grafo, inicio, fim):
             g[vizinho] = custo
             f[vizinho] = g[vizinho] + distanceCalculation(vizinho, fim)
             
-            print("vizinho: ",vizinho, "atual: ", atual, "valor do vetor g:", g[vizinho],"valor do vetor f:", f[vizinho])
+           # print("vizinho: ",vizinho, "atual: ", atual, "valor do vetor g:", g[vizinho],"valor do vetor f:", f[vizinho])
 
     # se não encontrou o caminho, então retorna uma lista vazia
     return []
     
-print(a_star(grafo_labirinto, inicio, fim))
+for i in range(5):
+    caminho, duracao, mem_AE = medir_consumo_memoria(a_star, grafo_labirinto, inicio, fim)
+    convertedArray[i] = duracao
+    averageTimeAEstrela += duracao
+    memoryUsageAEstrela += mem_AE
+
+print("-" * 150)
+print(f"Duração média do A*: {averageTimeAEstrela/5} s\nConsumo médio de memória: {memoryUsageAEstrela/5:.2f} KB\nCaminho encontrado: {caminho}")
+print("-" * 150)
+
+#--------------------------------Algoritmo de Busca Gulosa--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def buscaGulosa(grafo, inicio, fim):
+
+    abertos = [inicio] #nós que ainda tem que ser explorados
+    fechados = [] #nós já vizitados
+    antecessores = {} 
+
+    while abertos:
+        atual = abertos[0]
+        for node in abertos:
+            if distanceCalculation(node, fim) < distanceCalculation(atual, fim): # pegando o nó com menor valor de h (heurística)
+                atual = node
+
+        # Se o nó atual é o objetivo, reconstruir o caminho
+        if atual == fim:
+            caminho = []
+            while atual:
+                caminho.insert(0, atual)
+                atual = antecessores.get(atual)
+            return caminho
+
+        # após visitar o nó, pega atual da lista de abertos e o adiciona à lista de fechados
+        abertos.remove(atual)
+        fechados.append(atual)
+
+        for vizinho in grafo[atual]:
+            if vizinho in fechados or vizinho in abertos:
+                continue
+
+            abertos.append(vizinho)
+            antecessores[vizinho] = atual
+
+    return []
+
+caminho = buscaGulosa(grafo_labirinto, inicio, fim)
+
+for i in range(5):
+    caminho, duracao, mem_Guloso = medir_consumo_memoria(buscaGulosa, grafo_labirinto, inicio, fim)
+    convertedArray[i] = duracao
+    averageTimeGuloso += duracao
+    memoryUsageGuloso += mem_Guloso
+
+print("-" * 150)
+print(f"Duração média do A*: {averageTimeGuloso/5} s\nConsumo médio de memória: {memoryUsageGuloso/5:.2f} KB\nCaminho encontrado: {caminho}")
+print("-" * 150)
 
