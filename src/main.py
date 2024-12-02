@@ -129,7 +129,7 @@ for i in range(5):
     memoryUsageAEstrela += mem_AE
 
 print("-" * 150)
-print(f"Duração média do A*: {averageTimeAEstrela/5} s\nConsumo médio de memória: {memoryUsageAEstrela/5:.2f} KB\nCaminho encontrado: {caminho}")
+print(f"Duração média do A*: {averageTimeAEstrela} s\nConsumo médio de memória: {memoryUsageAEstrela/5:.2f} KB\nCaminho encontrado: {caminho}")
 print("-" * 150)
 
 #--------------------------------Algoritmo de Busca Gulosa--------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -176,6 +176,6 @@ for i in range(5):
     memoryUsageGuloso += mem_Guloso
 
 print("-" * 150)
-print(f"Duração média do A*: {averageTimeGuloso/5} s\nConsumo médio de memória: {memoryUsageGuloso/5:.2f} KB\nCaminho encontrado: {caminho}")
+print(f"Duração média do A*: {averageTimeGuloso} s\nConsumo médio de memória: {memoryUsageGuloso/5:.2f} KB\nCaminho encontrado: {caminho}")
 print("-" * 150)
 

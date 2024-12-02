@@ -40,7 +40,7 @@ encontra a melhor solução para o problema.
   - tracemalloc : para medir o consumo de memória.
 
 ## Resultados das medicões de desempenho ⏱️
-![image](https://github.com/user-attachments/assets/a94b8bb2-b3f0-4320-8fc0-146a976f3bce)
+![image](https://github.com/user-attachments/assets/c7901b64-a6a4-4366-9061-e6c8a05db7b1)
 
 ## Análise comparativa dos algoritmos 🔍
 
